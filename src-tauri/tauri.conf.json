@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "AE toolbox",
+  "version": "0.1.0",
+  "identifier": "com.yasov.ae-plugin-installer",
+  "build": {
+    "beforeDevCommand": "pnpm dev", 
+    "beforeBuildCommand": "pnpm build",
+    "devUrl": "http://localhost:1420",
+    "frontendDist": "../dist"
+  },
+  
+  "app": {
+    "windows": [
+      {
+        "title": "ae-plugin-installer",
+        "width": 800,
+        "height": 600,
+        "resizable": true,
+        "dragDropEnabled": true
+      }
+    ]
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "externalBin": ["sidecar/installer-helper"],
+    "icon": [
+      "icons/icon.ico",
+      "icons/icon.png",
+      "icons/icon.icns"
+      
+    ]
+  }
+}

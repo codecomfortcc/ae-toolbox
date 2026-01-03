@@ -1,0 +1,5 @@
+# Ignore the entire sidecar project and its git metadata
+sidecar/installer-helper/.git/
+sidecar/installer-helper/target/
+sidecar/installer-helper/Cargo.lock
+sidecar/*.exe
