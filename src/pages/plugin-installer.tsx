@@ -268,12 +268,12 @@ export default function PluginInstaller() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-8 font-sans select-none overflow-hidden">
+    <div className="min-h-screen bg-background text-foreground p-8 font-sans select-none overflow-hidden">
       {/* 1. TOP NAV */}
       <div className="flex justify-between items-center mb-10">
         <button
           onClick={() => navigate("/")}
-          className="flex items-center gap-2 text-zinc-600 hover:text-white transition-all uppercase text-[10px] font-black group"
+          className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-all uppercase text-[10px] font-black group"
         >
           <ChevronLeft
             size={14}
@@ -282,8 +282,8 @@ export default function PluginInstaller() {
           Dashboard
         </button>
         <div className="flex items-center gap-3">
-          <Terminal className="text-purple-500" size={18} />
-          <h1 className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">
+          <Terminal className="text-primary" size={18} />
+          <h1 className="text-[10px] font-black uppercase tracking-[0.3em] text-muted-foreground">
             Plugin Engine v2.1
           </h1>
         </div>
@@ -294,7 +294,7 @@ export default function PluginInstaller() {
           <h2 className="text-5xl font-black uppercase italic tracking-tighter">
             Install AE PLUGINS
           </h2>
-          <p className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest mt-2">
+          <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest mt-2">
             Automated Adobe Asset Handler
           </p>
         </div>
@@ -302,7 +302,7 @@ export default function PluginInstaller() {
           <select
             value={targetAE}
             onChange={(e) => setTargetAE(e.target.value)}
-            className="bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-2 text-xs font-bold uppercase outline-none focus:ring-2 ring-purple-500"
+            className="bg-card border border-border rounded-xl px-4 py-2 text-xs font-bold uppercase outline-none focus:ring-2 ring-primary shadow-sm"
           >
             {aeVersions.map((v) => (
               <option key={v} value={v}>
@@ -333,11 +333,11 @@ export default function PluginInstaller() {
             return (
               <div
                 key={g}
-                className="bg-zinc-900/30 border border-zinc-800/50 rounded-2xl overflow-hidden backdrop-blur-md mb-4"
+                className="bg-card/40 border border-border/50 rounded-2xl overflow-hidden backdrop-blur-md mb-4"
               >
                 {/* Header Container */}
                 <div className={`w-full flex items-center justify-between p-5 transition-all ${
-                    expanded === g ? "bg-zinc-800/40" : "hover:bg-zinc-800/10"
+                    expanded === g ? "bg-accent/50" : "hover:bg-accent/20"
                 }`}>
                   <button
                     onClick={() => setExpanded(expanded === g ? null : g)}
@@ -346,7 +346,7 @@ export default function PluginInstaller() {
                     <Icon
                       size={16}
                       className={
-                        expanded === g ? "text-purple-400" : "text-zinc-600"
+                        expanded === g ? "text-primary" : "text-muted-foreground"
                       }
                     />
                     <span className="text-[11px] font-black uppercase">
@@ -356,7 +356,7 @@ export default function PluginInstaller() {
                         ? "UXP (CCX)"
                         : g + "s"}
                     </span>
-                    <span className="text-[9px] font-black bg-zinc-950 px-2 py-1 rounded border border-zinc-800 text-zinc-500">
+                    <span className="text-[9px] font-black bg-background px-2 py-1 rounded border border-border text-muted-foreground">
                       {items.length}
                     </span>
                   </button>
@@ -367,7 +367,7 @@ export default function PluginInstaller() {
                       e.stopPropagation(); // Prevent accordion from opening/closing
                       handleAction("openFolder", { path: g });
                     }}
-                    className="p-2 text-zinc-600 hover:text-purple-400 transition-colors bg-zinc-950/50 rounded-lg border border-zinc-800/50"
+                    className="p-2 text-muted-foreground hover:text-primary transition-colors bg-background/50 rounded-lg border border-border/50"
                     title={`Open ${g} folder in Explorer`}
                   >
                     <FolderOpen size={14} />
@@ -383,21 +383,21 @@ export default function PluginInstaller() {
                       transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-3 pb-3 space-y-1.5 pt-2 border-t border-zinc-800/50">
+                      <div className="px-3 pb-3 space-y-1.5 pt-2 border-t border-border/50">
                         {items.length === 0 && (
-                            <p className="text-[9px] text-zinc-700 font-bold uppercase p-4 text-center">No items found</p>
+                            <p className="text-[9px] text-muted-foreground font-bold uppercase p-4 text-center">No items found</p>
                         )}
                         {items.map((p) => (
                           <div
                             key={p.installPath}
-                            className="flex flex-col bg-black/40 border border-zinc-800/50 rounded-xl p-3 group/item space-y-3"
+                            className="flex flex-col bg-background/50 border border-border/50 rounded-xl p-3 group/item space-y-3"
                           >
                             <div className="flex items-center justify-between">
                               <div className="min-w-0">
-                                <p className="text-[11px] font-bold truncate pr-2 text-zinc-300">
+                                <p className="text-[11px] font-bold truncate pr-2 text-foreground">
                                   {p.fileName}
                                 </p>
-                                <p className="text-[8px] text-zinc-700 font-black uppercase">
+                                <p className="text-[8px] text-muted-foreground font-black uppercase">
                                   AE {p.aeVersion} • v{p.currentVersion}
                                 </p>
                               </div>
@@ -409,7 +409,7 @@ export default function PluginInstaller() {
                                       version: selectedVersions[p.installPath],
                                     })
                                   }
-                                  className="p-1.5 text-zinc-600 hover:text-blue-400"
+                                  className="p-1.5 text-muted-foreground hover:text-blue-500"
                                   title="Revert to selected version"
                                 >
                                   <History size={13} />
@@ -420,7 +420,7 @@ export default function PluginInstaller() {
                                       path: p.installPath,
                                     })
                                   }
-                                  className="p-1.5 text-zinc-600 hover:text-red-400"
+                                  className="p-1.5 text-muted-foreground hover:text-red-500"
                                   title="Delete current file"
                                 >
                                   <Trash2 size={13} />
@@ -431,7 +431,7 @@ export default function PluginInstaller() {
                                       path: p.installPath,
                                     })
                                   }
-                                  className="p-1.5 text-zinc-600 hover:text-red-600"
+                                  className="p-1.5 text-muted-foreground hover:text-red-600"
                                   title="Delete everything"
                                 >
                                   <XCircle size={13} />
@@ -440,8 +440,8 @@ export default function PluginInstaller() {
                             </div>
 
                             {/* VERSION SELECTOR */}
-                            <div className="flex items-center justify-between bg-zinc-950/50 p-2 rounded-lg border border-zinc-800/30">
-                              <span className="text-[8px] font-black text-zinc-600 uppercase">
+                            <div className="flex items-center justify-between bg-background/50 p-2 rounded-lg border border-border/30">
+                              <span className="text-[8px] font-black text-muted-foreground uppercase">
                                 Version History
                               </span>
                               <select
@@ -452,7 +452,7 @@ export default function PluginInstaller() {
                                     [p.installPath]: parseInt(e.target.value),
                                   })
                                 }
-                                className="bg-transparent text-[10px] font-black text-purple-400 outline-none cursor-pointer"
+                                className="bg-transparent text-[10px] font-black text-primary outline-none cursor-pointer"
                               >
                                 {Array.from(
                                   { length: p.currentVersion },
@@ -463,7 +463,7 @@ export default function PluginInstaller() {
                                     <option
                                       key={v}
                                       value={v}
-                                      className="bg-zinc-900 text-white"
+                                      className="bg-popover text-popover-foreground"
                                     >
                                       Version {v} {v === p.currentVersion ? "(Latest)" : ""}
                                     </option>
@@ -489,14 +489,14 @@ export default function PluginInstaller() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute inset-0 z-50 bg-purple-600/20 border-4 border-dashed border-purple-500 rounded-[3.5rem] flex items-center justify-center pointer-events-none backdrop-blur-sm"
+                className="absolute inset-0 z-50 bg-primary/20 border-4 border-dashed border-primary rounded-[3.5rem] flex items-center justify-center pointer-events-none backdrop-blur-sm"
               >
                 <div className="flex flex-col items-center gap-4">
                   <CloudUpload
                     size={48}
-                    className="text-white animate-bounce"
+                    className="text-primary-foreground animate-bounce"
                   />
-                  <span className="text-xl font-black uppercase italic tracking-widest text-purple-400">
+                  <span className="text-xl font-black uppercase italic tracking-widest text-primary">
                     Release to Deploy
                   </span>
                 </div>
@@ -518,15 +518,15 @@ export default function PluginInstaller() {
               })
             }
             whileHover={{ scale: 1.005 }}
-            className="h-full border-2 border-dashed border-zinc-900 rounded-[3.5rem] flex flex-col items-center justify-center cursor-pointer group hover:border-zinc-700 transition-all"
+            className="h-full border-2 border-dashed border-border/50 rounded-[3.5rem] flex flex-col items-center justify-center cursor-pointer group hover:border-primary/50 transition-all bg-card/10 hover:bg-card/20"
           >
-            <div className="p-12 rounded-full border border-zinc-900 mb-6 bg-zinc-950/30 group-hover:bg-purple-500/5 transition-all">
-              <FolderDown className="w-16 h-16 text-zinc-800 group-hover:text-purple-500 transition-colors" />
+            <div className="p-12 rounded-full border border-border/50 mb-6 bg-background/30 group-hover:bg-primary/5 transition-all">
+              <FolderDown className="w-16 h-16 text-muted group-hover:text-primary transition-colors" />
             </div>
-            <h3 className="text-2xl font-black uppercase italic tracking-tighter text-zinc-300">
+            <h3 className="text-2xl font-black uppercase italic tracking-tighter text-foreground">
               Deploy Asset
             </h3>
-            <p className="text-[10px] text-zinc-600 font-bold uppercase mt-2 tracking-[0.2em]">
+            <p className="text-[10px] text-muted-foreground font-bold uppercase mt-2 tracking-[0.2em]">
               Drop files or click to browse system
             </p>
           </motion.div>
@@ -536,59 +536,59 @@ export default function PluginInstaller() {
       {/* 4. FOLDER MODAL */}
       <AnimatePresence>
         {showFolderModal && (
-          <div className="fixed inset-0 z-150 bg-black/95 backdrop-blur-md flex items-center justify-center p-6">
+          <div className="fixed inset-0 z-150 bg-background/95 backdrop-blur-md flex items-center justify-center p-6">
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="bg-zinc-900 border border-zinc-800 p-10 rounded-[3rem] w-full max-w-md shadow-2xl relative"
+              className="bg-card border border-border p-10 rounded-[3rem] w-full max-w-md shadow-2xl relative"
             >
               <button
                 onClick={() => setShowFolderModal(false)}
-                className="absolute top-8 right-8 text-zinc-600 hover:text-white"
+                className="absolute top-8 right-8 text-muted-foreground hover:text-foreground"
               >
                 <X size={20} />
               </button>
               <h2 className="text-2xl font-black uppercase italic flex items-center gap-3 mb-6">
-                <FolderPlus className="text-purple-500" size={24} /> Set
+                <FolderPlus className="text-primary" size={24} /> Set
                 Destination
               </h2>
 
               <div className="flex items-center gap-2 mb-4 overflow-x-auto py-2 scrollbar-hide">
                 <button
                   onClick={() => setCurrentPathStack([])}
-                  className="text-[9px] font-black uppercase text-purple-400"
+                  className="text-[9px] font-black uppercase text-primary"
                 >
                   ROOT
                 </button>
                 {currentPathStack.map((name, i) => (
                   <div key={i} className="flex items-center gap-1">
-                    <ChevronRight size={10} className="text-zinc-700" />
-                    <span className="text-[9px] font-black uppercase text-zinc-300">
+                    <ChevronRight size={10} className="text-muted-foreground" />
+                    <span className="text-[9px] font-black uppercase text-foreground">
                       {name}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <div className="max-h-60 overflow-y-auto mb-8 bg-black/40 rounded-3xl border border-zinc-800 p-2 custom-scrollbar">
+              <div className="max-h-60 overflow-y-auto mb-8 bg-background/40 rounded-3xl border border-border p-2 custom-scrollbar">
                 {foldersAtCurrentLevel.map((f) => (
                   <button
                     key={f}
                     onClick={() =>
                       setCurrentPathStack([...currentPathStack, f])
                     }
-                    className="w-full text-left p-4 text-[11px] border-b border-zinc-800/20 hover:bg-purple-500/10 rounded-2xl flex items-center justify-between group transition-all"
+                    className="w-full text-left p-4 text-[11px] border-b border-border/20 hover:bg-primary/10 rounded-2xl flex items-center justify-between group transition-all"
                   >
                     <div className="flex items-center gap-3">
                       <Folder
                         size={14}
-                        className="text-zinc-700 group-hover:text-purple-500 transition-colors"
+                        className="text-muted-foreground group-hover:text-primary transition-colors"
                       />
-                      <span className="font-bold text-zinc-500 group-hover:text-zinc-200 uppercase">
+                      <span className="font-bold text-muted-foreground group-hover:text-foreground uppercase">
                         {f}
                       </span>
                     </div>
-                    <ChevronRight size={12} className="text-zinc-800" />
+                    <ChevronRight size={12} className="text-muted-foreground" />
                   </button>
                 ))}
               </div>
@@ -599,7 +599,7 @@ export default function PluginInstaller() {
                 onChange={(e) =>
                   setNewSubFolderName(e.target.value.toUpperCase())
                 }
-                className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl p-5 text-[10px] outline-none focus:border-purple-500 font-black tracking-widest mb-4"
+                className="w-full bg-background border border-border rounded-2xl p-5 text-[10px] outline-none focus:border-primary font-black tracking-widest mb-4"
               />
               <button
                 onClick={() => {
@@ -609,7 +609,7 @@ export default function PluginInstaller() {
                   handleAction("installFile", { filePath: pendingFile!, path });
                   setShowFolderModal(false);
                 }}
-                className="w-full bg-purple-600 py-5 rounded-2xl text-[10px] font-black uppercase flex items-center justify-center gap-2 shadow-xl shadow-purple-500/20"
+                className="w-full bg-primary text-primary-foreground py-5 rounded-2xl text-[10px] font-black uppercase flex items-center justify-center gap-2 shadow-xl shadow-primary/20"
               >
                 <FileCheck size={14} /> Finalize Installation
               </button>
@@ -625,16 +625,16 @@ export default function PluginInstaller() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-200 bg-black/90 backdrop-blur-2xl flex flex-col items-center justify-center"
+            className="fixed inset-0 z-200 bg-background/90 backdrop-blur-2xl flex flex-col items-center justify-center"
           >
             <RefreshCcw
-              className="animate-spin text-purple-500 mb-6"
+              className="animate-spin text-primary mb-6"
               size={64}
             />
             <h2 className="text-2xl font-black uppercase italic tracking-tighter">
               Engine Busy
             </h2>
-            <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.3em]">
+            <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-[0.3em]">
               {statusMessage}
             </p>
           </motion.div>

@@ -1,25 +1,26 @@
-// Prevents additional console window on Windows in release, but keep it for dev
- #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
-mod sidecar;
+mod app_state;
+mod commands;
+mod core;
+mod privileged;
+mod events;
+mod utils;
 
-use std::sync::{Arc, Mutex};
-use std::collections::HashMap;
-use sidecar::SidecarState; 
+use app_state::AppState;
+use tauri::Manager;
 
 fn main() {
-    println!("AE Toolbox v0.1.0");
     tauri::Builder::default()
-        .plugin(tauri_plugin_shell::init())
-        .plugin(tauri_plugin_opener::init())
-        .plugin(tauri_plugin_dialog::init())
-        // Initialize and Manage the Sidecar State
-        .manage(SidecarState {
-            child: Arc::new(Mutex::new(None)),
-            callbacks: Arc::new(Mutex::new(HashMap::new())),
+        .setup(|app| {
+            let state = AppState::new(app.handle());
+            app.manage(state);
+            Ok(())
         })
         .invoke_handler(tauri::generate_handler![
-            sidecar::dispatch_sidecar_job
+            commands::installer_commands::analyze_asset,
+            commands::installer_commands::install_asset,
+            commands::system_commands::ping_backend
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
